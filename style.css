@@ -27,6 +27,7 @@ nav{
     display: flex;
     align-items:center;
     gap:30px;
+    position: relative;
 }
 
 .logo{
@@ -34,6 +35,24 @@ nav{
     display: block;
 }
 
+.navbar{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-left ul{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-right{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
 .nav-left ul{
     display: flex;
     gap:30px;
@@ -93,8 +112,9 @@ nav{
 }
 
 .mob-menu{
-    display:none;
+    display: none;
     cursor: pointer;
+    font-size: 2rem;
 }
 
 .quote-div{
@@ -202,12 +222,15 @@ nav{
 
 hr{
     width: 100%;
+    margin-bottom: 1.5rem;
 }
+
 footer{
     margin: 2.5rem;
 }
+
 .upper-footer{
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
     gap:4rem;
@@ -215,7 +238,7 @@ footer{
 .upper-footer ul{
     margin-top: 2rem;
     list-style-type: none;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 .upper-footer li{
@@ -226,9 +249,22 @@ footer{
 .upper-footer a{
     color: rgba(0,0,0,.58);
 }
+
 .upper-footer a:hover{
     color: black;
 }
+
+.footer-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.arrow{
+    display: none;
+}
+
 .social-media{
     display: flex;
     flex-direction: row;
@@ -261,27 +297,62 @@ footer{
 }
 
 @media(max-width:768px){
-
     nav{
         padding:16px;
         gap:0;
     }
-
-    .nav-left,
-    .store-locator,
-    .btns{
+    .navbar{
         display:none;
     }
+
 
     .logo{
         width: 45px;
     }
 
     .mob-menu{
-        display:block;
+        display: block;
         margin-left: auto;
     }
 
+    .mob-menu.active{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+    }
+    
+    .navbar.active{
+        display:flex;
+        flex-direction:column;
+        position:fixed;
+        top:0;
+        right:0;
+        width:70%;
+        height:100vh;
+        background:#fff;
+        padding:90px 30px;
+        z-index:1000;
+    }
+
+    .navbar.active .nav-left ul{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+    }
+
+    .navbar.active .nav-right{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+        margin:30px 0 0;
+    }
+
+    .stop-scroll{
+        overflow: hidden;
+        height: 100vh;
+    }
     .hero{
         flex-direction: column;
     }
@@ -297,13 +368,35 @@ footer{
     .content p{
         font-size:1.1rem;
     }
-    .footer{
+
+    footer{
         flex-direction: column;
+    }
+
+    .upper-footer{
+        flex-direction: column;
+    }
+
+    .upper-footer > div ul{
+        display: none;
+    }
+
+    .upper-footer > div.active ul{
+        display: block;
+    }
+
+    .arrow{
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        transition: transform .3s;
+    }
+    .upper-footer > div.active .arrow{
+        transform: rotate(180deg);
     }
 }
 
 @media(max-width:1024px){
-
     .store-locator{
         display:none;
     }
@@ -323,7 +416,8 @@ footer{
     .content p{
         font-size:1.1rem;
     }
-    .footer{
+
+    footer{
         flex-direction: column;
     }
 }
