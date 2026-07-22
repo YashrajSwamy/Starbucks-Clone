@@ -1,1 +1,1 @@
-#Starbucks Clone Task - HTML, CSS and JS
+Starbucks Landing Page Clone - HTML, CSS and JS
